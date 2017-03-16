@@ -52,7 +52,8 @@ function draw()	{
 
 	for(var i = 0; i < maxPop; i++){
 		population.rockets[i].update();
-		population.rockets[i].show(frameCount % 2, img);
+		if (mouseIsPressed)
+			population.rockets[i].show(frameCount % 2, img);
 	}
 	count++;
 	if(count >= lifespan - 1){
