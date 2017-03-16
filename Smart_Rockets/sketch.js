@@ -1,11 +1,11 @@
 var rocket;
 
-var w = 640;
-var h = 480;
+var w = 1024;
+var h = 600;
 
 var count = 0;
 var lifespan = 300;
-var maxPop = 100;
+var maxPop = 800;
 
 var population;
 
@@ -25,7 +25,7 @@ function drawText(){
 }
 
 function setup() {
-	createCanvas(640, 480);
+	createCanvas(1024, 600);
 	population = new Population();
 	target = createVector(width / 2, 50);
 	for(var i = 0; i < 20; i++){
