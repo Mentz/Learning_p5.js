@@ -47,13 +47,30 @@ function setup() {
 
 function draw()	{
 	background(0);
-	if (!mouseIsPressed)
 	drawText();
 
 	for(var i = 0; i < maxPop; i++){
 		population.rockets[i].update();
 		population.rockets[i].show(frameCount % 2, img);
 	}
+	
+	count++;
+	if(count >= lifespan - 1){
+		population.calcFitness();
+		if(fitnessMedio == 0){
+			fitnessMedio = population.calcMedia();
+		} else {
+			sumFitness = population.calcMedia();
+			fitnessMedio += sumFitness;
+			fitnessMedio /= 2.0;
+		}
+		sumFitness = 0;
+		population.selection();
+		population.reproduction();
+		count = 0;
+		generation++;
+	}
+	
 	while (mouseIsPressed)
 	{
 		for(var i = 0; i < maxPop; i++){
@@ -77,22 +94,7 @@ function draw()	{
 			generation++;
 		}
 	}
-	count++;
-	if(count >= lifespan - 1){
-		population.calcFitness();
-		if(fitnessMedio == 0){
-			fitnessMedio = population.calcMedia();
-		} else {
-			sumFitness = population.calcMedia();
-			fitnessMedio += sumFitness;
-			fitnessMedio /= 2.0;
-		}
-		sumFitness = 0;
-		population.selection();
-		population.reproduction();
-		count = 0;
-		generation++;
-	}
+	
 	fill(255, 100, 100);
 	ellipse(target.x, target.y, 15, 15);
 
