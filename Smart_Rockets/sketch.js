@@ -21,9 +21,9 @@ var generation = 1;
 function drawText(){
 	textSize(15);
 	fill(255);
-	text("Lifespan: " + (lifespan - count), 10, 50);
-	text("São " + ((fitnessMedio * 100)/maxPop).toFixed(2) + "% perfeitos", 10, 70);
-	text("Geração: " + generation, 10, 90);
+	text("Lifespan: " + (lifespan - count), 10, 20);
+	text("São " + ((fitnessMedio * 100)/maxPop).toFixed(2) + "% perfeitos", 10, 40);
+	text("Geração: " + generation, 10, 60);
 }
 
 function setup() {
