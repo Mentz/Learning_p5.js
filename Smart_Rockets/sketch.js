@@ -38,6 +38,7 @@ function draw()	{
 	background(0);
 	
 	drawText();
+	frameRate(144);
 
 	for(var i = 0; i < maxPop; i++){
 		population.rockets[i].update();
