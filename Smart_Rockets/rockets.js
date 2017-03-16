@@ -51,7 +51,7 @@ function Rocket(dna) {
 		rotate(this.vel.heading() + PI/2);
 		rectMode(CENTER);
 		if (direction)
-			image(img, 0, -10, 5, 20);
+			image(img, 0, -10, 5, 20, 0, 0, 5, 20);
 		else
 			image(img, 0, -10, 5, 20, 0, 20, 5, 20);
 		pop();
