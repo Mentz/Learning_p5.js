@@ -27,7 +27,7 @@ function drawText(){
 	text("Geração: " + generation, 10, 60);
 	if (frameCount % 1000 == 0)
 	{
-		frames = frameCount / (millis()/1000f);
+		frames = frameCount / (millis()/1000.0);
 	}
 	text("FPS: " + frames, 10, 80);
 }
