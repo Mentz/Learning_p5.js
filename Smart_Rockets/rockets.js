@@ -48,13 +48,12 @@ function Rocket(dna) {
 		noStroke();
 		fill(255, 150);
 		translate(this.pos.x, this.pos.y);
-		rotate(this.vel.heading());
+		rotate(this.vel.heading() + PI/2);
 		rectMode(CENTER);
-		rect(0, 0, 25, 5);
 		if (direction)
-			image(img, 0, 0);
+			image(img, 0, -10, 5, 20);
 		else
-			image(img, 0, 20);
+			image(img, 0, -10, 5, 20, 0, 20, 5, 20);
 		pop();
 	}	
 
