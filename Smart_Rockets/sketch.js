@@ -18,6 +18,7 @@ var sumFitness = 0;
 var fitnessMedio = 0;
 var generation = 1;
 var frames = 0;
+var img;
 
 function drawText(){
 	textSize(15);
@@ -25,7 +26,7 @@ function drawText(){
 	text("Lifespan: " + (lifespan - count), 10, 20);
 	text("Estão " + ((fitnessMedio * 100)/maxPop).toFixed(2) + "% adaptados", 10, 40);
 	text("Geração: " + generation, 10, 60);
-	if (frameCount % 1000 == 0)
+	if (frameCount % 100 == 0)
 	{
 		frames = frameCount / (millis()/1000.0);
 	}
@@ -40,6 +41,7 @@ function setup() {
 		walls.push(createVector(random(w), random(125, h - 200)));
 		wallsSize.push(createVector(random(10, 50), random(10, 50)));
 	}
+	
 }
 
 function draw()	{
@@ -50,7 +52,7 @@ function draw()	{
 
 	for(var i = 0; i < maxPop; i++){
 		population.rockets[i].update();
-		population.rockets[i].show();
+		population.rockets[i].show(frameCount % 2, img);
 	}
 	count++;
 	if(count >= lifespan - 1){
