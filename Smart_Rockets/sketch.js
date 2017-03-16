@@ -35,6 +35,7 @@ function drawText(){
 
 function setup() {
 	createCanvas(1024, 600);
+	frameRate(144);
 	population = new Population();
 	target = createVector(width / 2, 50);
 	for(var i = 0; i < 20; i++){
@@ -46,14 +47,19 @@ function setup() {
 
 function draw()	{
 	background(0);
-	
+	if (!mouseIsPressed)
 	drawText();
-	frameRate(144);
 
 	for(var i = 0; i < maxPop; i++){
 		population.rockets[i].update();
-		if (mouseIsPressed)
+		population.rockets[i].show(frameCount % 2, img);
+	}
+	while (mouseIsPressed)
+	{
+		for(var i = 0; i < maxPop; i++){
+			population.rockets[i].update();
 			population.rockets[i].show(frameCount % 2, img);
+		}
 	}
 	count++;
 	if(count >= lifespan - 1){
