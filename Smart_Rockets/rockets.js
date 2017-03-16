@@ -43,15 +43,19 @@ function Rocket(dna) {
 		}
 	}
 
-	this.show = function() {		
+	this.show = function(var direction, var img) {		
 		push();
-    	noStroke();
-    	fill(255, 150);
-    	translate(this.pos.x, this.pos.y);
-    	rotate(this.vel.heading());
-    	rectMode(CENTER);
-    	rect(0, 0, 25, 5);
-    	pop();
+		noStroke();
+		fill(255, 150);
+		translate(this.pos.x, this.pos.y);
+		rotate(this.vel.heading());
+		rectMode(CENTER);
+		rect(0, 0, 25, 5);
+		if (direction)
+			image(img, 0, 0);
+		else
+			image(img, 0, 20);
+		pop();
 	}	
 
 }
