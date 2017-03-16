@@ -16,12 +16,14 @@ var wallsSize = [];
 
 var sumFitness = 0;
 var fitnessMedio = 0;
+var generation = 1;
 
 function drawText(){
 	textSize(15);
 	fill(255);
-	text("Lifespan: " + (lifespan - count), w - 100, 50);
-	text("Media do fitness: " + fitnessMedio, w - 170, 70);
+	text("Lifespan: " + (lifespan - count), 10, 50);
+	text("São " + (fitnessMedio * 100)/maxPop + "% perfeitos", 10, 70);
+	text("Geração: " + generation, 10, 90);
 }
 
 function setup() {
@@ -66,4 +68,5 @@ function draw()	{
 		fill(120, 120, 120);
 		rect(walls[i].x, walls[i].y, wallsSize[i].x, wallsSize[i].y);
 	}
+	generation++;
 }
