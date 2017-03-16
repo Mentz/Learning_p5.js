@@ -41,7 +41,7 @@ function setup() {
 		walls.push(createVector(random(w), random(125, h - 200)));
 		wallsSize.push(createVector(random(10, 50), random(10, 50)));
 	}
-	img = loadImage("rockets.png");
+	img = loadImage("Smart_Rockets/rockets.png");
 }
 
 function draw()	{
