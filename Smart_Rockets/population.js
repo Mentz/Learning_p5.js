@@ -18,8 +18,8 @@ function Population() {
 	this.calcFitness = function(){
 		maxFit = -1;
 		for(var i = 0; i < maxPop; i++){
-			var d = dist(this.rockets[i].pos.x, this.rockets[i].pos.y, target.x, target.y);
-			this.rockets[i].fitness = map(d, 0, w, 0.6, 0);
+			var d = this.rockets[i].minDist;
+			this.rockets[i].fitness = map(d, 0, w, 0.5, 0);
 			if(this.rockets[i].fitness > maxFit){
 				maxFit = this.rockets[i].fitness;
 			}
