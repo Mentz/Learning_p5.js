@@ -17,13 +17,19 @@ var wallsSize = [];
 var sumFitness = 0;
 var fitnessMedio = 0;
 var generation = 1;
+var frames = 0;
 
 function drawText(){
 	textSize(15);
 	fill(255);
 	text("Lifespan: " + (lifespan - count), 10, 20);
-	text("São " + ((fitnessMedio * 100)/maxPop).toFixed(2) + "% perfeitos", 10, 40);
+	text("Estão " + ((fitnessMedio * 100)/maxPop).toFixed(2) + "% adaptados", 10, 40);
 	text("Geração: " + generation, 10, 60);
+	if (frameCount % 1000 == 0)
+	{
+		frames = frameCount / (millis()/1000f);
+	}
+	text("FPS: " + frames, 10, 80);
 }
 
 function setup() {
@@ -60,6 +66,7 @@ function draw()	{
 		population.selection();
 		population.reproduction();
 		count = 0;
+		generation++;
 	}
 	fill(255, 100, 100);
 	ellipse(target.x, target.y, 15, 15);
