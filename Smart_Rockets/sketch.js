@@ -68,5 +68,4 @@ function draw()	{
 		fill(120, 120, 120);
 		rect(walls[i].x, walls[i].y, wallsSize[i].x, wallsSize[i].y);
 	}
-	generation++;
 }
