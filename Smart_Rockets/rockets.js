@@ -43,7 +43,7 @@ function Rocket(dna) {
 		}
 	}
 
-	this.show = function(var direction, var img) {		
+	this.show = function(direction, img) {		
 		push();
 		noStroke();
 		fill(255, 150);
