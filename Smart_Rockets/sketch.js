@@ -5,7 +5,7 @@ var h = 600;
 
 var count = 0;
 var lifespan = 300;
-var maxPop = 800;
+var maxPop = 1200;
 
 var population;
 
