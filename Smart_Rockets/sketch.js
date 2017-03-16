@@ -51,7 +51,7 @@ function draw()	{
 
 	for(var i = 0; i < maxPop; i++){
 		population.rockets[i].update();
-		population.rockets[i].show(frameCount % 2, img);
+		population.rockets[i].show(frameCount % 8, img);
 	}
 	
 	count++;
