@@ -60,6 +60,22 @@ function draw()	{
 			population.rockets[i].update();
 			population.rockets[i].show(frameCount % 2, img);
 		}
+		count++;
+		if(count >= lifespan - 1){
+			population.calcFitness();
+			if(fitnessMedio == 0){
+				fitnessMedio = population.calcMedia();
+			} else {
+				sumFitness = population.calcMedia();
+				fitnessMedio += sumFitness;
+				fitnessMedio /= 2.0;
+			}
+			sumFitness = 0;
+			population.selection();
+			population.reproduction();
+			count = 0;
+			generation++;
+		}
 	}
 	count++;
 	if(count >= lifespan - 1){
