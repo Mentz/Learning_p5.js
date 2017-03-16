@@ -71,27 +71,15 @@ function draw()	{
 		generation++;
 	}
 	
-	while (mouseIsPressed)
+	if (mouseIsPressed)
 	{
-		for(var i = 0; i < maxPop; i++){
-			population.rockets[i].update();
-			population.rockets[i].show(frameCount % 2, img);
-		}
-		count++;
-		if(count >= lifespan - 1){
-			population.calcFitness();
-			if(fitnessMedio == 0){
-				fitnessMedio = population.calcMedia();
-			} else {
-				sumFitness = population.calcMedia();
-				fitnessMedio += sumFitness;
-				fitnessMedio /= 2.0;
+		for(; count < lifespan - 1;)
+		{
+			for(var i = 0; i < maxPop; i++){
+				population.rockets[i].update();
+				population.rockets[i].show(frameCount % 2, img);
 			}
-			sumFitness = 0;
-			population.selection();
-			population.reproduction();
-			count = 0;
-			generation++;
+			count++;
 		}
 	}
 	
