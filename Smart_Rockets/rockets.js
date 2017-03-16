@@ -2,6 +2,7 @@ function Rocket(dna) {
 	this.pos = createVector(w / 2, h - 20);
 	this.vel = createVector();
 	this.acc = createVector();
+	this.minDist = w+h;
 	if(dna){
 		this.dna = dna;
 	} else {
@@ -22,6 +23,10 @@ function Rocket(dna) {
 		var d = dist(this.pos.x, this.pos.y, target.x, target.y);
 		if(d < 10){
 			this.completed = true;
+		}
+		if (d < this.minDist)
+		{
+			this.minDist = d;
 		}
 
 		if(this.pos.x > w || this.pos.x < 0 || this.pos.y > h || this.pos.y < 0){
