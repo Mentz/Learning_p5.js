@@ -1,8 +1,10 @@
 function Population() {
 	this.rockets = [];
+	this.survivors = [];
 	this.matingPool = [];
 	var maxFit = -1;
-
+	var survivorCount = 50;
+	
 	for(var i = 0; i < maxPop; i++){
 		this.rockets[i] = new Rocket();
 	}
@@ -37,7 +39,17 @@ function Population() {
 	}
 
 	this.selection = function(){
+		this.rockets[i].sort(function(a, b) { 
+    			return a.fitness - b.fitness;
+		});
+		this.survivors = [];
+		for(var i = 0; i < survivorCount; i++)
+		{
+			this.survivors.push(this.rockets[i]);
+		}
+		
 		this.matingPool = [];
+		shuffle(this.rockets[i], true);
 		for(var i = 0; i < maxPop; i++){
 			var n = this.rockets[i].fitness * 100;
 			for(var j = 0; j < n; j++){
@@ -48,7 +60,7 @@ function Population() {
 
 	this.reproduction = function(){
 		var newPop = [];
-		for(var j = 0; j < maxPop; j++){
+		for(var j = survivorCount; j < maxPop; j++){
 			var a = random(this.matingPool);
 			var b = random(this.matingPool);
 
