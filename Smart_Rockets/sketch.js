@@ -24,12 +24,13 @@ var sucessos = 0;
 var fracassos = 0;
 
 var aux;
+var framesPassed;
 
 function drawText(){
 	textSize(15);
 	fill(255);
 	text("Lifespan: " + (lifespan - count), 10, 20);
-	text("Estão " + ((fitnessMedio * 100)/maxPop).toFixed(2) + "% adaptados", 10, 40);
+	text("Estão " + (max((fitnessMedio * 100)/maxPop), 0.0).toFixed(2) + "% adaptados", 10, 40);
 	text("Geração: " + generation, 10, 60);
 	if (frameCount % 100 == 0)
 	{
