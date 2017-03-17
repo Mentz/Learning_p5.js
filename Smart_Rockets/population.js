@@ -19,7 +19,7 @@ function Population() {
 		maxFit = -1;
 		for(var i = 0; i < maxPop; i++){
 			var d = this.rockets[i].minDist;
-			this.rockets[i].fitness = map(pow(map(d, 0, w, 2, 0),2), 0, 4, 0, 0.5);
+			this.rockets[i].fitness = map(pow(map(d, 0, w, 2, 0),3), 0, 8, -0.2, 0.5);
 			if(this.rockets[i].fitness > maxFit){
 				maxFit = this.rockets[i].fitness;
 			}
