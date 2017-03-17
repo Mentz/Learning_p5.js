@@ -63,7 +63,16 @@ function Population() {
 
 	this.reproduction = function(){
 		var newPop = [];
-		newPop = this.survivors;
+		for(var j = 0; j < survivorCount; j++)
+		{
+			var newDna = [];
+			for(var i = 0; i < lifespan; i++)
+			{
+				newDna[i] = this.survivors[j].dna.gene[i];
+			}
+			
+			newPop[j] = new Rocket(new DNA(newDna));
+		}
 		for(var j = survivorCount; j < maxPop; j++){
 			var a = random(this.matingPool);
 			var b = random(this.matingPool);
