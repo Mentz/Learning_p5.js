@@ -23,6 +23,7 @@ function Rocket(dna) {
 		var d = dist(this.pos.x, this.pos.y, target.x, target.y);
 		if(d < 10){
 			this.completed = true;
+			return 1;
 		}
 		if (d < this.minDist)
 		{
@@ -31,11 +32,13 @@ function Rocket(dna) {
 
 		if(this.pos.x > w || this.pos.x < 0 || this.pos.y > h || this.pos.y < 0){
 			this.crashed = true;
+			return 2;
 		}
 
 		for(var i = 0; i < 20; i++){
 			if(this.pos.x > walls[i].x && this.pos.x < walls[i].x + wallsSize[i].x && this.pos.y > walls[i].y && this.pos.y < walls[i].y + wallsSize[i].y){
 				this.crashed = true;
+				return 2;
 			}
 		}
 
@@ -46,6 +49,8 @@ function Rocket(dna) {
 			this.acc.mult(0);
 			this.vel.limit(4);
 		}
+		
+		return 0;
 	}
 
 	this.show = function(direction, img) {		
