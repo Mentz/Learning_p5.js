@@ -20,6 +20,11 @@ var generation = 1;
 var frames = 0;
 var img;
 
+var sucessos = 0;
+var fracassos = 0;
+
+var aux;
+
 function drawText(){
 	textSize(15);
 	fill(255);
@@ -31,6 +36,8 @@ function drawText(){
 		frames = frameCount / (millis()/1000.0);
 	}
 	text("FPS: " + frames, 10, 80);
+	text("Sucessos: " + sucessos, 10, 100);
+	text("Fracassos: " + fracassos, 10, 100);
 }
 
 function setup() {
@@ -50,7 +57,11 @@ function draw()	{
 	drawText();
 
 	for(var i = 0; i < maxPop; i++){
-		population.rockets[i].update();
+		aux = population.rockets[i].update();
+		if (aux == 1)
+			sucessos++;
+		else if (aux == 2)
+			fracassos++;
 		population.rockets[i].show(round((frameCount%16)/16), img);
 	}
 	
@@ -69,6 +80,8 @@ function draw()	{
 		population.reproduction();
 		count = 0;
 		generation++;
+		sucessos = 0;
+		fracassos = 0;
 	}
 	
 	if (mouseIsPressed)
@@ -76,7 +89,11 @@ function draw()	{
 		for(; count < lifespan - 1;)
 		{
 			for(var i = 0; i < maxPop; i++){
-				population.rockets[i].update();
+				aux = population.rockets[i].update();
+				if (aux == 1)
+					sucessos++;
+				else if (aux == 2)
+					fracassos++;
 				//population.rockets[i].show(frameCount % 2, img);
 			}
 			count++;
