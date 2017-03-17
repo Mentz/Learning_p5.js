@@ -18,7 +18,7 @@ function Population() {
 	this.calcFitness = function(){
 		maxFit = -1;
 		for(var i = 0; i < maxPop; i++){
-			var d = (this.rockets[i].minDist + dist(this.rockets[i].pos.x, this.rockets[i].pos.y, target.x, target.y))/2;
+			var d = (this.rockets[i].minDist + map(dist(this.rockets[i].pos.x, this.rockets[i].pos.y, target.x, target.y))/2;
 			this.rockets[i].fitness = map(pow(map(d, 0, w, 2, 0),3), 0, 8, -0.2, 0.5);
 			if(this.rockets[i].fitness > maxFit){
 				maxFit = this.rockets[i].fitness;
@@ -39,7 +39,7 @@ function Population() {
 	this.selection = function(){
 		this.matingPool = [];
 		for(var i = 0; i < maxPop; i++){
-			var n = this.rockets[i].fitness * 10;
+			var n = this.rockets[i].fitness * 100;
 			for(var j = 0; j < n; j++){
 				this.matingPool.push(this.rockets[i]);
 			}
@@ -65,7 +65,7 @@ function Population() {
 			}
 
 			for(var i = 0; i < lifespan; i++){
-				if(random(1) < 0.002){
+				if(random(1) < 0.00125){
 					newDna[i] = p5.Vector.random2D();
 				}
 			}
