@@ -31,7 +31,7 @@ function Population() {
 				this.rockets[i].fitness = 1;
 			}
 			if(this.rockets[i].crashed){
-				this.rockets[i].fitness = 0.02;
+				this.rockets[i].fitness = -0.2;
 			}
 		}
 	}
