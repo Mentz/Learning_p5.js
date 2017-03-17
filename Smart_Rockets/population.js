@@ -39,7 +39,7 @@ function Population() {
 	this.selection = function(){
 		this.matingPool = [];
 		for(var i = 0; i < maxPop; i++){
-			var n = this.rockets[i].fitness * 10;
+			var n = this.rockets[i].fitness * 100;
 			for(var j = 0; j < n; j++){
 				this.matingPool.push(this.rockets[i]);
 			}
