@@ -39,7 +39,7 @@ function Population() {
 	}
 
 	this.selection = function(){
-		this.rockets[i].sort(function(a, b) { 
+		this.rockets.sort(function(a, b) { 
     			return a.fitness - b.fitness;
 		});
 		this.survivors = [];
