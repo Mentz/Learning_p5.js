@@ -52,12 +52,12 @@ function Population() {
 			var a = random(this.matingPool);
 			var b = random(this.matingPool);
 
-			var middle = floor(random(lifespan));
+			//var middle = floor(random(lifespan));
 
 			var newDna = [];
 
 			for(var i = 0; i < lifespan; i++){
-				if(i >= middle){
+				if(random(2) >= 1.0){
 					newDna[i] = a.dna.gene[i];
 				} else {
 					newDna[i] = b.dna.gene[i];
@@ -65,7 +65,7 @@ function Population() {
 			}
 
 			for(var i = 0; i < lifespan; i++){
-				if(random(1) < 0.00625){
+				if(random(1) < 0.01){
 					newDna[i] = p5.Vector.random2D();
 				}
 			}
