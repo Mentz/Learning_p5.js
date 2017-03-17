@@ -36,8 +36,8 @@ function drawText(){
 		frames = frameCount / (millis()/1000.0);
 	}
 	text("FPS: " + frames, 10, 80);
-	text("Sucessos: " + sucessos, 10, 100);
-	text("Fracassos: " + fracassos, 10, 100);
+	//text("Sucessos: " + sucessos, 10, 100);
+	//text("Fracassos: " + fracassos, 10, 100);
 }
 
 function setup() {
