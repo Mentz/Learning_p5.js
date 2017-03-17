@@ -52,16 +52,16 @@ function Population() {
 			var a = random(this.matingPool);
 			var b = random(this.matingPool);
 
-			var middle = floor(random(lifespan));
-
+			var aVal;
+			var bVal;
+			
 			var newDna = [];
 
 			for(var i = 0; i < lifespan; i++){
-				if(i >= middle){
-					newDna[i] = a.dna.gene[i];
-				} else {
-					newDna[i] = b.dna.gene[i];
-				}
+				aVal = random();
+				bVal = 1 - aVal;
+				
+				newDna[i] = a.dna.gene[i].mult(a).add(b.dna.gene[i].mult(b));
 			}
 
 			for(var i = 0; i < lifespan; i++){
