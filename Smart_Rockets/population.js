@@ -44,7 +44,7 @@ function Population() {
 	}
 
 	this.selection = function(){
-		this.rockets.compare(sortFitness);
+		this.rockets.sort(sortFitness);
 		this.survivors = [];
 		for(var i = 0; i < survivorCount; i++)
 		{
