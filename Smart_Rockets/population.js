@@ -8,6 +8,11 @@ function Population() {
 	for(var i = 0; i < maxPop; i++){
 		this.rockets[i] = new Rocket();
 	}
+	
+	function sortFitness(a, b)
+	{
+		return a.fitness - b.fitness;
+	}
 
 	this.calcMedia = function(){
 		var media = 0;
@@ -39,9 +44,7 @@ function Population() {
 	}
 
 	this.selection = function(){
-		this.rockets.sort(function(a, b) { 
-    			return a.fitness - b.fitness;
-		});
+		this.rockets.compare(sortFitness);
 		this.survivors = [];
 		for(var i = 0; i < survivorCount; i++)
 		{
@@ -60,6 +63,7 @@ function Population() {
 
 	this.reproduction = function(){
 		var newPop = [];
+		newPop = this.survivors;
 		for(var j = survivorCount; j < maxPop; j++){
 			var a = random(this.matingPool);
 			var b = random(this.matingPool);
