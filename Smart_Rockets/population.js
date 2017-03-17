@@ -39,7 +39,7 @@ function Population() {
 	this.selection = function(){
 		this.matingPool = [];
 		for(var i = 0; i < maxPop; i++){
-			var n = this.rockets[i].fitness * 100;
+			var n = this.rockets[i].fitness * 10;
 			for(var j = 0; j < n; j++){
 				this.matingPool.push(this.rockets[i]);
 			}
@@ -52,20 +52,20 @@ function Population() {
 			var a = random(this.matingPool);
 			var b = random(this.matingPool);
 
-			var aVal;
-			var bVal;
-			
+			var middle = floor(random(lifespan));
+
 			var newDna = [];
 
 			for(var i = 0; i < lifespan; i++){
-				aVal = random();
-				bVal = 1 - aVal;
-				
-				newDna[i] = a.dna.gene[i].mult(a).add(b.dna.gene[i].mult(b));
+				if(i >= middle){
+					newDna[i] = a.dna.gene[i];
+				} else {
+					newDna[i] = b.dna.gene[i];
+				}
 			}
 
 			for(var i = 0; i < lifespan; i++){
-				if(random(1) < 0.00125){
+				if(random(1) < 0.01){
 					newDna[i] = p5.Vector.random2D();
 				}
 			}
