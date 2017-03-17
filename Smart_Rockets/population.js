@@ -65,7 +65,7 @@ function Population() {
 			}
 
 			for(var i = 0; i < lifespan; i++){
-				if(random(1) < 0.01){
+				if(random(1) < 0.002){
 					newDna[i] = p5.Vector.random2D();
 				}
 			}
