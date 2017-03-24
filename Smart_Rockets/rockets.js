@@ -22,7 +22,7 @@ function Rocket(dna) {
 	this.update = function(remainingTime) {
 
 		var d = dist(this.pos.x, this.pos.y, target.x, target.y);
-		if (!completed)
+		if (!this.completed)
 		{
 			if(d < 10){
 				this.completed = true;
