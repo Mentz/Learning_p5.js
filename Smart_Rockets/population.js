@@ -35,7 +35,10 @@ function Population() {
 		for(var i = 0; i < maxPop; i++){
 			this.rockets[i].fitness /= maxFit;
 			if(this.rockets[i].completed){
-				this.rockets[i].fitness = 1;
+				this.rockets[i].completeTime = map(this.rockets[i].completeTime, -1, 130, 0, 0.375);
+				this.rockets[i].fitness = 0.625 + this.rockets[i].completeTime;
+				if (this.rockets[i].fitness > 1)
+					this.rockets[i].fitness = 1;
 			}
 			if(this.rockets[i].crashed){
 				this.rockets[i].fitness = -0.2;
