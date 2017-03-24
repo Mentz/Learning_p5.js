@@ -11,6 +11,7 @@ function Rocket(dna) {
 
 	this.crashed = false;
 	this.completed = false;
+	this.completeTime = -1;
 
 	this.fitness = 0;
 
