@@ -18,39 +18,47 @@ function Rocket(dna) {
 		this.acc.add(force);
 	}
 
-	this.update = function() {
+	this.update = function(remainingTime) {
 
 		var d = dist(this.pos.x, this.pos.y, target.x, target.y);
-		if(d < 10){
-			this.completed = true;
-			return 1;
-		}
-		if (d < this.minDist)
+		if (!completed)
 		{
-			this.minDist = d;
-		}
+			if(d < 10){
+				this.completed = true;
+				this.completeTime = remainingTime;
+				return 1;
+			}
+			if (d < this.minDist)
+			{
+				this.minDist = d;
+			}
 
-		if(this.pos.x > w || this.pos.x < 0 || this.pos.y > h || this.pos.y < 0){
-			this.crashed = true;
-			return 2;
-		}
-
-		for(var i = 0; i < 20; i++){
-			if(this.pos.x > walls[i].x && this.pos.x < walls[i].x + wallsSize[i].x && this.pos.y > walls[i].y && this.pos.y < walls[i].y + wallsSize[i].y){
+			if(this.pos.x > w || this.pos.x < 0 || this.pos.y > h || this.pos.y < 0){
 				this.crashed = true;
 				return 2;
 			}
-		}
 
-		this.applyForce(this.dna.gene[count]);
-		if(!this.crashed && !this.completed){		
-			this.vel.add(this.acc);
-			this.pos.add(this.vel);
-			this.acc.mult(0);
-			this.vel.limit(4);
+			for(var i = 0; i < 20; i++){
+				if(this.pos.x > walls[i].x && this.pos.x < walls[i].x + wallsSize[i].x && this.pos.y > walls[i].y && this.pos.y < walls[i].y + wallsSize[i].y){
+					this.crashed = true;
+					return 2;
+				}
+			}
+
+			this.applyForce(this.dna.gene[count]);
+			if(!this.crashed && !this.completed){		
+				this.vel.add(this.acc);
+				this.pos.add(this.vel);
+				this.acc.mult(0);
+				this.vel.limit(4);
+			}
+
+			return 0;
 		}
-		
-		return 0;
+		else
+		{
+			return 1;
+		}
 	}
 
 	this.show = function(direction, img) {		
