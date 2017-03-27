@@ -57,8 +57,9 @@ function draw()	{
 	background(0);
 	drawText();
 
+	
 	for(var i = 0; i < maxPop; i++){
-		aux = population.rockets[i].update();
+		aux = population.rockets[i].update(lifetime - count);
 		if (aux == 1)
 			sucessos++;
 		else if (aux == 2)
@@ -90,7 +91,7 @@ function draw()	{
 		for(; count < lifespan - 1;)
 		{
 			for(var i = 0; i < maxPop; i++){
-				aux = population.rockets[i].update();
+				aux = population.rockets[i].update(lifetime - count);
 				if (aux == 1)
 					sucessos++;
 				else if (aux == 2)
