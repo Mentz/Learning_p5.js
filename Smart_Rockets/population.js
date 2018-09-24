@@ -41,7 +41,7 @@ function Population() {
 					this.rockets[i].fitness = 1;
 			}
 			if(this.rockets[i].crashed){
-				this.rockets[i].fitness = -5;
+				this.rockets[i].fitness -= 0.5;
 			}
 		}
 	}
@@ -57,7 +57,7 @@ function Population() {
 		this.matingPool = [];
 		shuffle(this.rockets[i], true);
 		for(var i = 0; i < maxPop; i++){
-			var n = this.rockets[i].fitness * 100;
+			var n = this.rockets[i].fitness * 1000;
 			for(var j = 0; j < n; j++){
 				this.matingPool.push(this.rockets[i]);
 			}
@@ -83,12 +83,19 @@ function Population() {
 			//var middle = floor(random(lifespan));
 
 			var newDna = [];
-
-			for(var i = 0; i < lifespan; i++){
-				if(random(2) >= 1.0){
+			if(random(2) >= 1.0){
+				for(var i = 0; i < lifespan / 2; i++){
 					newDna[i] = a.dna.gene[i];
-				} else {
+				}
+				for(var i = lifespan / 2; i < lifespan; i++){
 					newDna[i] = b.dna.gene[i];
+				}
+			} else {
+				for(var i = 0; i < lifespan / 2; i++){
+					newDna[i] = b.dna.gene[i];
+				}
+				for(var i = lifespan / 2; i < lifespan; i++){
+					newDna[i] = a.dna.gene[i];
 				}
 			}
 
