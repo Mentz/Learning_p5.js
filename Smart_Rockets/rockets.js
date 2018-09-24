@@ -51,7 +51,7 @@ function Rocket(dna) {
 				this.vel.add(this.acc);
 				this.pos.add(this.vel);
 				this.acc.mult(0);
-				this.vel.limit(4);
+				this.vel.limit(2000);
 			}
 
 			return 0;
