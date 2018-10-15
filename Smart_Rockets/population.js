@@ -11,7 +11,7 @@ function Population() {
 
 	function sortFitness(a, b)
 	{
-		return b.fitness - a.fitness;
+		return a.fitness - b.fitness;
 	}
 
 	this.calcMedia = function(){
