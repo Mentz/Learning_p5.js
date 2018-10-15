@@ -1,6 +1,6 @@
 function Population() {
 	this.rockets = [];
-	this.survivors = [];
+	// this.survivors = [];
 	this.matingPool = [];
 	var maxFit = -1;
 	var survivorCount = 50;
@@ -54,35 +54,38 @@ function Population() {
 
 	this.selection = function(){
 		this.rockets.sort(sortFitness);
-		this.survivors = [];
-		for(var i = 0; i < survivorCount; i++)
-		{
-			this.survivors.push(this.rockets[i]);
-		}
+		// this.survivors = [];
 
 		this.matingPool = [];
-		shuffle(this.rockets[i], true);
-		for(var i = 0; i < maxPop; i++){
-			var n = this.rockets[i].fitness * 1000;
-			for(var j = 0; j < n; j++){
-				this.matingPool.push(this.rockets[i]);
-			}
+		// for(var i = 0; i < survivorCount; i++)
+		for(var i = 0; i < 100; i++)
+		{
+			this.matingPool.push(this.rockets[i]);
 		}
+
+		// shuffle(this.rockets[i], true);
+		// for(var i = 0; i < maxPop; i++){
+		// 	var n = this.rockets[i].fitness * 1000;
+		// 	for(var j = 0; j < n; j++){
+		// 		this.matingPool.push(this.rockets[i]);
+		// 	}
+		// }
 	}
 
 	this.reproduction = function(){
 		var newPop = [];
-		for(var j = 0; j < survivorCount; j++)
-		{
-			var newDna = [];
-			for(var i = 0; i < lifespan; i++)
-			{
-				newDna[i] = this.survivors[j].dna.gene[i];
-			}
+		// for(var j = 0; j < survivorCount; j++)
+		// {
+		// 	var newDna = [];
+		// 	for(var i = 0; i < lifespan; i++)
+		// 	{
+		// 		newDna[i] = this.survivors[j].dna.gene[i];
+		// 	}
+		//
+		// 	newPop[j] = new Rocket(new DNA(newDna));
+		// }
 
-			newPop[j] = new Rocket(new DNA(newDna));
-		}
-		for(var j = survivorCount; j < maxPop; j++){
+		for(var j = 0; j < maxPop; j++){
 			var a = random(this.matingPool);
 			var b = random(this.matingPool);
 
@@ -106,7 +109,7 @@ function Population() {
 			}
 
 			for(var i = 0; i < lifespan; i++){
-				if(random(1) < 0.01){
+				if(random(1) < 0.005){
 					newDna[i] = p5.Vector.random2D();
 				}
 			}
