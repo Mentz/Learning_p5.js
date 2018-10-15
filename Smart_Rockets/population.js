@@ -4,11 +4,11 @@ function Population() {
 	this.matingPool = [];
 	var maxFit = -1;
 	var survivorCount = 50;
-	
+
 	for(var i = 0; i < maxPop; i++){
 		this.rockets[i] = new Rocket();
 	}
-	
+
 	function sortFitness(a, b)
 	{
 		return b.fitness - a.fitness;
@@ -24,25 +24,31 @@ function Population() {
 
 	this.calcFitness = function(){
 		maxFit = -1;
+		sumFit = 0;
 		for(var i = 0; i < maxPop; i++){
 			var d = (this.rockets[i].minDist + dist(this.rockets[i].pos.x, this.rockets[i].pos.y, target.x, target.y))/2;
-			this.rockets[i].fitness = map(pow(map(d, 0, w, 2, 0),3), 0, 8, -0.2, 0.5);
-			if(this.rockets[i].fitness > maxFit){
-				maxFit = this.rockets[i].fitness;
+			d = d*d*d;
+			// this.rockets[i].fitness = map(pow(map(d, 0, w, 2, 0),3), 0, 8, -0.2, 0.5);
+			this.rockets[i].fitness = map(d, 0, w, 0.0, 0.5);
+			// if(this.rockets[i].fitness > maxFit){
+			// 	maxFit = this.rockets[i].fitness;
+			// }
+			if (this.rockets[i].completed){
+				this.rockets[i].completeTime = map(this.rockets[i].completeTime, -1, 130, 0.55, 0.15);
+				this.rockets[i].fitness += this.rockets[i].completeTime;
 			}
+			if (this.rockets[i].crashed)
+				this.rockets[i].fitness -= 0.2;
+
+			if (this.rockets[i].fitness > 1)
+				this.rockets[i].fitness = 1;
+
+			sumFit += this.rockets[i].fitness;
 		}
 
 		for(var i = 0; i < maxPop; i++){
-			this.rockets[i].fitness /= maxFit;
-			if(this.rockets[i].completed){
-				this.rockets[i].completeTime = map(this.rockets[i].completeTime, -1, 130, 0.375, 0);
-				this.rockets[i].fitness = 0.625 + this.rockets[i].completeTime;
-				if (this.rockets[i].fitness > 1)
-					this.rockets[i].fitness = 1;
-			}
-			if(this.rockets[i].crashed){
-				this.rockets[i].fitness -= 0.5;
-			}
+			// this.rockets[i].fitness /= maxFit;
+			this.rockets[i].fitness /= sumFit;
 		}
 	}
 
@@ -53,7 +59,7 @@ function Population() {
 		{
 			this.survivors.push(this.rockets[i]);
 		}
-		
+
 		this.matingPool = [];
 		shuffle(this.rockets[i], true);
 		for(var i = 0; i < maxPop; i++){
@@ -73,7 +79,7 @@ function Population() {
 			{
 				newDna[i] = this.survivors[j].dna.gene[i];
 			}
-			
+
 			newPop[j] = new Rocket(new DNA(newDna));
 		}
 		for(var j = survivorCount; j < maxPop; j++){

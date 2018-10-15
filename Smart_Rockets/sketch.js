@@ -30,15 +30,15 @@ function drawText(){
 	textSize(15);
 	fill(255);
 	text("Lifespan: " + (lifespan - count), 10, 20);
-	text("Estão " + max([(fitnessMedio * 100)/maxPop, 0.0]).toFixed(2) + "% adaptados", 10, 40);
+	// text("Estão " + max([(fitnessMedio * 100)/maxPop, 0.0]).toFixed(2) + "% adaptados", 10, 40);
+	text("Sucessos: " + sucessos, 10, 100);
 	text("Geração: " + generation, 10, 60);
 	if (frameCount % 100 == 0)
 	{
 		frames = frameCount / (millis()/1000.0);
 	}
 	text("FPS: " + frames, 10, 80);
-	//text("Sucessos: " + sucessos, 10, 100);
-	//text("Fracassos: " + fracassos, 10, 100);
+	// text("Fracassos: " + fracassos, 10, 100);
 }
 
 function setup() {
@@ -57,7 +57,7 @@ function draw()	{
 	background(0);
 	drawText();
 
-	
+
 	for(var i = 0; i < maxPop; i++){
 		aux = population.rockets[i].update(lifespan - count);
 		if (aux == 1)
@@ -66,7 +66,7 @@ function draw()	{
 			fracassos++;
 		population.rockets[i].show(round((frameCount%16)/16), img);
 	}
-	
+
 	count++;
 	if(count >= lifespan - 1){
 		population.calcFitness();
@@ -85,7 +85,7 @@ function draw()	{
 		sucessos = 0;
 		fracassos = 0;
 	}
-	
+
 	if (mouseIsPressed)
 	{
 		for(; count < lifespan - 1;)
@@ -101,7 +101,7 @@ function draw()	{
 			count++;
 		}
 	}
-	
+
 	fill(255, 100, 100);
 	ellipse(target.x, target.y, 15, 15);
 

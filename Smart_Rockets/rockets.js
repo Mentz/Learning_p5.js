@@ -47,7 +47,7 @@ function Rocket(dna) {
 			}
 
 			this.applyForce(this.dna.gene[count]);
-			if(!this.crashed && !this.completed){		
+			if(!this.crashed && !this.completed){
 				this.vel.add(this.acc);
 				this.pos.add(this.vel);
 				this.acc.mult(0);
@@ -62,7 +62,7 @@ function Rocket(dna) {
 		}
 	}
 
-	this.show = function(direction, img) {		
+	this.show = function(direction, img) {
 		push();
 		noStroke();
 		fill(255, 150);
@@ -74,6 +74,6 @@ function Rocket(dna) {
 		else
 			image(img, 0, -10, 5, 20, 0, 20, 5, 20);
 		pop();
-	}	
+	}
 
 }
