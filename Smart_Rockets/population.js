@@ -107,10 +107,12 @@ function Population() {
 					newDna[i] = a.dna.gene[i];
 				}
 			}
-
-			for(var i = 0; i < lifespan; i++){
-				if(random(1) < 0.005){
-					newDna[i] = p5.Vector.random2D();
+			
+			if(random(1) < 0.05){
+				for(var i = 0; i < lifespan; i++){
+					if(random(1) < 0.005){
+						newDna[i] = p5.Vector.random2D();
+					}
 				}
 			}
 
