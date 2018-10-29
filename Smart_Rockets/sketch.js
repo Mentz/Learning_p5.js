@@ -59,8 +59,8 @@ function draw()	{
 
 
 	for(var i = 0; i < maxPop; i++){
-// 		aux = population.rockets[i].update(lifespan - count);
-		aux = population.rockets[i].completed;
+		aux = population.rockets[i].update(lifespan - count);
+// 		aux = population.rockets[i].completed;
 		if (aux == true){
 			if (population.rockets[i].accountedFor == false){
 				sucessos++;
