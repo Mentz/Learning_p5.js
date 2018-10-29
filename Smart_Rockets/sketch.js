@@ -59,9 +59,14 @@ function draw()	{
 
 
 	for(var i = 0; i < maxPop; i++){
-		aux = population.rockets[i].update(lifespan - count);
-		if (aux == 1)
-			sucessos++;
+// 		aux = population.rockets[i].update(lifespan - count);
+		aux = population.rockets[i].completed;
+		if (aux == true){
+			if (population.rockets[i].accountedFor == false){
+				sucessos++;
+				population.rockets[i].accountedFor = true;
+			}
+		}
 		else if (aux == 2)
 			fracassos++;
 		population.rockets[i].show(round((frameCount%16)/16), img);
